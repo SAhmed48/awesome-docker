@@ -13,10 +13,10 @@ Create node.js app on your local, dockerize it.
 4. **Run it**
 
 ###### Note:
-Use alpine version of official node.
-See result on localhost.
-Tag image and push docker hub.
-Remove from local and pull it from docker and then run.
+1. Use alpine version of official node.
+2. See result on localhost.
+3. Tag image and push docker hub.
+4. Remove from local and pull it from docker and then run.
 
 
 ## Solution
