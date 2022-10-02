@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgresdb:
+    container_name: postgresdb
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5435:5432
+
+networks:
+  default:
+    name: postgres-service-default-network  
