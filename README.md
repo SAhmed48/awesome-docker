@@ -1,2 +1,2 @@
-# docker-mastery
-Repository contain notes, assignment and practice material about docker.
+# docker
+The Repository contains learning, configuration and practice notes about docker.
