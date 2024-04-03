@@ -17,5 +17,6 @@ elasticsearch/es-data-es02/*
 
 # apps
 /node-app/node_modules/*
+/node-app/package-lock.json
 /flask-app/__pycache__/*
 **node_modules**
