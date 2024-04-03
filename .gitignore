@@ -16,3 +16,6 @@ yarn-error.log*
 postgres/data/*
 postgres/pgadmin-data/*
 mysql/data/*
+elasticsearch/es-data-es00/*
+elasticsearch/es-data-es01/*
+elasticsearch/es-data-es02/*
