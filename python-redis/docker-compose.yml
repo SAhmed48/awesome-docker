@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+    web-api:
+      build: .
+      command: python app.py
+      ports:
+        - 5500:5000
+
+
+    redis-db:
+      image: "redis:alpine"
+      ports:
+        - 6379:6379
