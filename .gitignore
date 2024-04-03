@@ -1,8 +1,3 @@
-/build-images/node-app/node_modules/
-
-**node_modules**
-
-
 # misc
 .DS_Store
 .env.local
@@ -19,3 +14,8 @@ mysql/data/*
 elasticsearch/es-data-es00/*
 elasticsearch/es-data-es01/*
 elasticsearch/es-data-es02/*
+
+# apps
+/node-app/node_modules/*
+/flask-app/__pycache__/*
+**node_modules**
