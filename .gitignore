@@ -19,4 +19,9 @@ elasticsearch/es-data-es02/*
 /node-app/node_modules/*
 /node-app/package-lock.json
 /flask-app/__pycache__/*
+/fastAPI/pg-data/*
+/fastAPI/redis-data/*
+/fastAPI/pgadmin-data/*
+/fastAPI/.idea*
+/fastAPI/app/__pycache__/*
 **node_modules**
