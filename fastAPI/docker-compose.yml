@@ -1,0 +1,67 @@
+version: "3.9"
+
+services:
+  redis:
+    container_name: redis_container
+    image: "redis:latest"
+    hostname: redis
+    command: redis-server
+    restart: always
+    volumes:
+      - ./redis-data/redis:/var/lib/redis
+      - ./redis-data/redis-config:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - redis-network
+  redis-commander:
+    container_name: redis-commander
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+      - HTTP_USER=root
+      - HTTP_PASSWORD=qwerty
+    ports:
+      - 8081:8081
+    networks:
+      - redis-network
+  postgres-db:
+    container_name: postgresdb_container
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=admin 
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=fast-api-db
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+    ports:
+      - 5435:5432
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
+    ports:
+      - 5050:80
+  backend:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0
+    ports:
+      - 3001:80
+    depends_on:
+      - redis
+      - postgres-db
+
+volumes:
+  pg-data:
+  redis-data:
+  pgadmin-data:
+
+networks:
+  redis-network:
+    driver: bridge
