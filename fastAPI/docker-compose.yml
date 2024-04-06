@@ -4,16 +4,12 @@ services:
   redis:
     container_name: redis_container
     image: "redis:latest"
-    hostname: redis
-    command: redis-server
     restart: always
     volumes:
       - ./redis-data/redis:/var/lib/redis
       - ./redis-data/redis-config:/usr/local/etc/redis/redis.conf
     ports:
       - 6379:6379
-    networks:
-      - redis-network
   redis-commander:
     container_name: redis-commander
     image: rediscommander/redis-commander:latest
@@ -23,8 +19,6 @@ services:
       - HTTP_PASSWORD=qwerty
     ports:
       - 8081:8081
-    networks:
-      - redis-network
   postgres-db:
     container_name: postgresdb_container
     image: postgres:latest
@@ -53,6 +47,8 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 80
     ports:
       - 3001:80
+    links:
+      - redis
     depends_on:
       - redis
       - postgres-db
@@ -62,6 +58,3 @@ volumes:
   redis-data:
   pgadmin-data:
 
-networks:
-  redis-network:
-    driver: bridge
