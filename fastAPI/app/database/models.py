@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from .engine import Base
+from .engine import Base, engine
 
 
 class User(Base):
@@ -25,3 +25,6 @@ class Item(Base):
 
     owner = relationship("User", back_populates="items")
 
+
+def init_db():
+    Base.metadata.create_all(engine)
